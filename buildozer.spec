@@ -34,7 +34,7 @@ android.permissions = PACKAGE_USAGE_STATS
 
 # Android build settings
 android.api = 35
-android.minapi = 23
-
+android.minapi = 24
+android.ndk_api = 24
 # Keep the app focused on being a normal in-app pet.
 # This is NOT an overlay over other apps.
