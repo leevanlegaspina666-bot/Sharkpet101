@@ -28,7 +28,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            git zip unzip \
+            git zip unzip wget \
             autoconf automake libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev \
             libtinfo5 cmake libffi-dev libssl-dev
@@ -38,10 +38,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install buildozer cython==0.29.34
 
-      - name: Accept Android SDK licenses
+      - name: Install Android command-line tools
         run: |
-          mkdir -p "$HOME/.buildozer/android/platform/android-sdk/licenses"
-          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
+          SDK="$HOME/.buildozer/android/platform/android-sdk"
+          mkdir -p "$SDK/cmdline-tools"
+
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip \
+            -O /tmp/cmdline-tools.zip
+
+          unzip -q /tmp/cmdline-tools.zip -d /tmp/android-tools
+          mv /tmp/android-tools/cmdline-tools "$SDK/cmdline-tools/latest"
+
+          mkdir -p "$SDK/tools/bin"
+          ln -sf "$SDK/cmdline-tools/latest/bin/sdkmanager" "$SDK/tools/bin/sdkmanager"
+
+          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses || true
 
       - name: Build APK
         run: |
