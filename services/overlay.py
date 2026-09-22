@@ -10,7 +10,7 @@ YOUTUBE = "com.google.android.youtube"
 MESSENGER = "com.facebook.orca"
 DISCORD = "com.discord"
 
-PET_DP = 80
+PET_DP = 120
 WALK_SPEED_DP = 60
 FRAME_SECONDS = 0.10
 TURN_MIN = 2.5
