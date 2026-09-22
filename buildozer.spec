@@ -1,41 +1,27 @@
 [app]
 
-# (str) Title of your application
 title = Chibi Shark Pet
-
-# (str) Package name
 package.name = chibisharkpet
-
-# (str) Package domain
 package.domain = org.chibishark
-
-# (str) Source code where main.py lives
 source.dir = .
-
-# (list) Source files to include
 source.include_exts = py,png,jpg,jpeg,kv,atlas
-
-# (str) Application version
-version = 1.0
-
-# (list) Application requirements
-requirements = python3,kivy,pyjnius
-
-# (str) Orientation
+version = 2.0
+requirements = python3,kivy,pyjnius,android
 orientation = portrait
+fullscreen = 0
 
-# (bool) Fullscreen
-fullscreen = 1
+# Overlay + usage detection + foreground service.
+android.permissions = SYSTEM_ALERT_WINDOW,PACKAGE_USAGE_STATS,FOREGROUND_SERVICE,FOREGROUND_SERVICE_SPECIAL_USE,POST_NOTIFICATIONS
 
-# Android Usage Access. The user must still enable Usage Access
-# for the installed app in Android Settings if foreground-app
-# detection is desired.
-android.permissions = PACKAGE_USAGE_STATS
-
-# Android build settings
+# Android build settings. API 24 avoids the Python 3.14 pwritev issue seen with API 23.
 android.api = 35
 android.minapi = 24
 android.ndk_api = 24
 p4a.branch = develop
-# Keep the app focused on being a normal in-app pet.
-# This is NOT an overlay over other apps.
+
+# The overlay is a real Android foreground service so it can remain alive
+# after the Kivy Activity is no longer visible.
+services = Overlay:services/overlay.py:foreground:sticky:foregroundServiceType=specialUse
+
+# Make the sprite folder available to the service's AssetManager.
+android.add_assets = assets:assets
