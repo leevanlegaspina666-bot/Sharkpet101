@@ -14,14 +14,14 @@ fullscreen = 0
 android.permissions = SYSTEM_ALERT_WINDOW,PACKAGE_USAGE_STATS,FOREGROUND_SERVICE,FOREGROUND_SERVICE_SPECIAL_USE,POST_NOTIFICATIONS
 
 # Android build settings. API 24 avoids the Python 3.14 pwritev issue seen with API 23.
-android.api = 35
+android.api = 33
 android.minapi = 24
 android.ndk_api = 24
 p4a.branch = develop
 
 # The overlay is a real Android foreground service so it can remain alive
 # after the Kivy Activity is no longer visible.
-services = Overlay:services/overlay.py:foreground:sticky:foregroundServiceType=specialUse
+services = Overlay:services/overlay.py:foreground:sticky
 
 # Make the sprite folder available to the service's AssetManager.
 android.add_assets = assets:assets
