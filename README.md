@@ -1,4 +1,4 @@
-# Chibi Shark Pet — APK project
+ # Chibi Shark Pet — APK project
 
 This project is already arranged for Android APK building.
 
