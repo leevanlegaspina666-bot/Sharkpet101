@@ -354,3 +354,4 @@ except Exception:
 # Keep the Python service process alive while Android's main Handler drives the view.
 while True:
     time.sleep(1.0)
+
