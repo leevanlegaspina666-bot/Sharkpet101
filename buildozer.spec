@@ -36,5 +36,6 @@ android.permissions = PACKAGE_USAGE_STATS
 android.api = 35
 android.minapi = 24
 android.ndk_api = 24
+p4a.branch = develop
 # Keep the app focused on being a normal in-app pet.
 # This is NOT an overlay over other apps.
